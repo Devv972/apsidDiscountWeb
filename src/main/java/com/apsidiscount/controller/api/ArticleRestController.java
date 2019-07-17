@@ -17,7 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.apsidiscount.entity.Article;
 import com.apsidiscount.service.ArticleInconnuException;
 import com.apsidiscount.service.ArticleService;
-import com.apsidiscount.service.ArticleServiceImpl;
+
 @CrossOrigin("*")
 @RestController
 public class ArticleRestController {
@@ -43,6 +43,7 @@ public class ArticleRestController {
 		
 		articleService.create(article);
 		articleService.getById(article.getId());
+		articleService.getAll(article);
 		
 		URI location = uriBuilder.path("/api/article/{id}").buildAndExpand(article.getId()).toUri();
 		return ResponseEntity.created(location).body(article);
