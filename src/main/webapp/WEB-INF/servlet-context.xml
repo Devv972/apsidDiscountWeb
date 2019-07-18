@@ -14,4 +14,7 @@
     <mvc:view-resolvers>
         <mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp"/>
     </mvc:view-resolvers>
+    <mvc:cors>
+    	<mvc:mapping path="/**" allowed-origins="*"/>
+    </mvc:cors>
 </beans>
