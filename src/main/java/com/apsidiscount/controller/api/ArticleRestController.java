@@ -53,5 +53,13 @@ public class ArticleRestController {
 	public List<Article> getAll( )  {
 		return articleService.getAll();
 	}
+	@GetMapping(produces = "application/json", path="/api/article/{nomCategorie}")
+	public List<Article> getByCategorie(@PathVariable String nomCategorie )  {
+		return articleService.getByCategorie(nomCategorie);
+	}
+	@GetMapping(produces = "application/json", path="/api/article/{idCategorie}")
+	public List<Article> getCategorieById(@PathVariable Long idCategorie )  {
+		return articleService.getCategorieById(idCategorie);
+	}
 
 }
