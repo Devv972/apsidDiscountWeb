@@ -1,6 +1,8 @@
 package com.apsidiscount.controller.api;
 
 import java.net.URI;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,10 +45,16 @@ public class ArticleRestController {
 		
 		articleService.create(article);
 		articleService.getById(article.getId());
-		articleService.getAll(article);
+		
 		
 		URI location = uriBuilder.path("/api/article/{id}").buildAndExpand(article.getId()).toUri();
 		return ResponseEntity.created(location).body(article);
+	}
+	
+	
+	@GetMapping(produces = "application/json", path="/api/article")
+	public List<Article> getAll( )  {
+		return articleService.getAll();
 	}
 
 }
