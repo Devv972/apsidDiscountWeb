@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -19,12 +18,15 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.apsidiscount.entity.Article;
 import com.apsidiscount.service.ArticleInconnuException;
 import com.apsidiscount.service.ArticleService;
+import com.apsidiscount.service.CategorieService;
 
 @RestController
 public class ArticleRestController {
 	
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private CategorieService categorieService;
 	
 	@ExceptionHandler(ArticleInconnuException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
@@ -55,15 +57,10 @@ public class ArticleRestController {
 	public List<Article> getAll( )  {
 		return articleService.getAll();
 	}
-	
-//	@GetMapping(produces = "application/json", path="/api/article/{nomCategorie}")
-//	public List<Article> getByCategorie(@PathVariable String nomCategorie )  {
-//		return articleService.getByCategorie(nomCategorie);
-//	}
-	
+		
 	@GetMapping(produces = "application/json", path="/api/article/categorie/{id}")
-	public List<Article> getCategorieById(@PathVariable long id) {
-		return articleService.getCategorieById(id);
+	public List<Article> getArticleByCategorie(@PathVariable long id)  {
+		return categorieService.getArticleByCategorie(id);
 	}
 
 
